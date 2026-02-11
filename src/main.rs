@@ -23,6 +23,9 @@ pub struct DelayRequest {
     duration_seconds: u64,
 }
 
+#[derive(Serialize, Deserialize, JsonSchema)]
+pub struct SucceedRequest {}
+
 #[derive(Clone)]
 pub struct FailingMcpServer {
     tool_router: ToolRouter<Self>,
@@ -56,6 +59,13 @@ impl FailingMcpServer {
         eprintln!("delay: Completed");
         Ok(CallToolResult::success(vec![]))
     }
+
+    /// Always succeeds with a success message for testing successful tool execution
+    #[rmcp::tool(description = "Always succeeds with a success message for testing successful tool execution")]
+    async fn succeed(&self, _params: Parameters<SucceedRequest>) -> Result<CallToolResult, ErrorData> {
+        eprintln!("succeed: Returning success");
+        Ok(CallToolResult::success(vec![]))
+    }
 }
 
 #[rmcp::tool_handler]
@@ -84,6 +94,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     eprintln!("Available tools:");
     eprintln!("  - fail: Always returns an error");
     eprintln!("  - delay: Delays for a specified duration (for timeout testing)");
+    eprintln!("  - succeed: Always succeeds with a success message");
     eprintln!();
 
     // Create server handler
