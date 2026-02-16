@@ -1,3 +1,6 @@
+> **Warning**
+> This repository is no longer maintained and has been replaced by [mcp-test-server](https://github.com/dastrobu/mcp-test-server): A simple Model Context Protocol (MCP) server that provides various tools to test edge cases with MCP clients. Useful for testing error handling in MCP clients.
+
 # MCP Fail Server
 
 A simple Model Context Protocol (MCP) server that provides a single tool which always fails. Useful for testing error handling in MCP clients.
@@ -45,4 +48,3 @@ Licensed under either of
 - MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
 
 at your option.
-
